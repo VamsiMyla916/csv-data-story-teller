@@ -18,33 +18,35 @@ Uniform & Secure API Key Management: Uses Streamlit's Secrets Management (st.sec
 
 Workflow of the application:
 
+```mermaid
 graph TD
-subgraph User Interaction
-A[Start: User visits the app] --> B(User uploads a CSV file);
-B --> D[Display: Show Data Preview];
-D --> E{User chooses an action};
-end
+    subgraph User Interaction
+        A[Start: User visits the app] --> B(User uploads a CSV file);
+        B --> D[Display: Show Data Preview];
+        D --> E{User chooses an action};
+    end
 
-subgraph AI Insight Generation
-E -->|"Generate Insights ✨"| F[Backend: Prepare data summary];
-F --> G[Backend: Construct text prompt];
-G --> H((External: Call Gemini API));
-H --> I[Backend: Receive and store text insights];
-end
+    subgraph AI Insight Generation
+        E -->|"Generate Insights ✨"| F[Backend: Prepare data summary];
+        F --> G[Backend: Construct text prompt];
+        G --> H((External: Call Gemini API));
+        H --> I[Backend: Receive and store text insights];
+    end
 
-subgraph AI Visualization Generation
-E -->|"Suggest a Visualization 📈"| J[Backend: Construct code prompt];
-J --> K((External: Call Gemini API));
-K --> M[Backend: Clean and store AI-generated code];
-M --> N[Backend: Execute code to generate plot];
-N --> O[Backend: Store plot figure in session state];
-end
+    subgraph AI Visualization Generation
+        E -->|"Suggest a Visualization 📈"| J[Backend: Construct code prompt];
+        J --> K((External: Call Gemini API));
+        K --> M[Backend: Clean and store AI-generated code];
+        M --> N[Backend: Execute code to generate plot];
+        N --> O[Backend: Store plot figure in session state];
+    end
 
-subgraph Display Results
-I --> L[Display: Show results from session state];
-O --> L;
-L --> P[End: Awaiting next action];
-end
+    subgraph Display Results
+        I --> L[Display: Show results from session state];
+        O --> L;
+        L --> P[End: Awaiting next action];
+    end
+```
 
 🚀 How to Run and Deploy
 
