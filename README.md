@@ -16,6 +16,36 @@ Smart Visualizations: Employs an advanced prompt engineering strategy to have th
 
 Uniform & Secure API Key Management: Uses Streamlit's Secrets Management (st.secrets) for secure and consistent handling of API keys for both local and cloud environments.
 
+Workflow of the application:
+
+graph TD
+subgraph User Interaction
+A[Start: User visits the app] --> B(User uploads a CSV file);
+B --> D[Display: Show Data Preview];
+D --> E{User chooses an action};
+end
+
+subgraph AI Insight Generation
+E -->|"Generate Insights ✨"| F[Backend: Prepare data summary];
+F --> G[Backend: Construct text prompt];
+G --> H((External: Call Gemini API));
+H --> I[Backend: Receive and store text insights];
+end
+
+subgraph AI Visualization Generation
+E -->|"Suggest a Visualization 📈"| J[Backend: Construct code prompt];
+J --> K((External: Call Gemini API));
+K --> M[Backend: Clean and store AI-generated code];
+M --> N[Backend: Execute code to generate plot];
+N --> O[Backend: Store plot figure in session state];
+end
+
+subgraph Display Results
+I --> L[Display: Show results from session state];
+O --> L;
+L --> P[End: Awaiting next action];
+end
+
 🚀 How to Run and Deploy
 
 Follow these steps to run the app locally and deploy it to Streamlit Community Cloud.
